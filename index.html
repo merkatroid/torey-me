@@ -6,6 +6,17 @@
 <title>Torey Freeman</title>
 <meta name="description" content="IT program manager working on ITSM, program governance and AI enablement.">
 <link rel="stylesheet" href="style.css">
+<style>
+.contact-form{display:grid;gap:10px;margin-top:24px}
+.contact-form label{font-size:15px;font-weight:500}
+.contact-form input:not([type=hidden]):not([type=checkbox]),.contact-form textarea{width:100%;padding:11px 14px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);font:inherit;margin-bottom:8px}
+.contact-form textarea{resize:vertical;min-height:140px}
+.contact-form input:focus-visible,.contact-form textarea:focus-visible,.contact-form button:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.contact-form button{justify-self:start;font:inherit;cursor:pointer}
+.contact-form button:disabled{opacity:.65;cursor:wait}
+.contact-form .form-note{font-size:14px;color:var(--muted);margin:2px 0 0}
+#form-status{margin:0}
+</style>
 </head>
 <body>
 <header class="nav">
@@ -80,8 +91,48 @@
   <section id="contact" class="wrap">
     <h2>Contact</h2>
     <p>I'm open to conversations about AI operations and internal tools.</p>
+    <form id="contact-form" class="card contact-form" action="/api/contact" method="POST">
+      <input type="checkbox" name="botcheck" tabindex="-1" aria-hidden="true" style="display:none">
+      <label for="contact-name">Name</label>
+      <input id="contact-name" name="name" autocomplete="name" maxlength="120" required>
+      <label for="contact-email">Email</label>
+      <input id="contact-email" type="email" name="email" autocomplete="email" maxlength="254" required>
+      <label for="contact-message">Message</label>
+      <textarea id="contact-message" name="message" rows="5" maxlength="5000" required></textarea>
+      <button class="btn primary" type="submit">Send message</button>
+      <p class="form-note">Your message is sent privately to my inbox.</p>
+      <p id="form-status" role="status" aria-live="polite"></p>
+    </form>
+
   </section>
 </main>
 <footer class="wrap foot">Torey Freeman</footer>
+<script>
+const form = document.getElementById('contact-form');
+form.addEventListener('submit', async (event) => {
+  event.preventDefault();
+  const button = form.querySelector('button');
+  const status = document.getElementById('form-status');
+  button.disabled = true;
+  status.textContent = 'Sending...';
+  const data = Object.fromEntries(new FormData(form));
+  delete data.redirect;
+  try {
+    const response = await fetch(form.action, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
+      body: JSON.stringify(data)
+    });
+    const result = await response.json();
+    if (!response.ok || !result.success) throw new Error('Submission failed');
+    form.reset();
+    status.textContent = 'Thanks, your message has been sent.';
+  } catch (error) {
+    status.textContent = 'Your message could not be sent. Please try again in a moment.';
+  } finally {
+    button.disabled = false;
+  }
+});
+</script>
 </body>
 </html>
