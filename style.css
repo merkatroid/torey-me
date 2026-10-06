@@ -48,3 +48,5 @@ p{margin:0 0 16px}
 .quote{color:var(--muted);font-style:italic;margin:0 0 28px}
 @media (max-width:600px){.doors{grid-template-columns:1fr}.intro h1{font-size:2.3rem}.page-head{padding-top:40px}}
 @media (prefers-reduced-motion:reduce){.door{transition:none}html{scroll-behavior:auto}}
+.tipjar{display:flex;flex-direction:column;align-items:center;text-align:center}
+html{scroll-padding-top:70px}
