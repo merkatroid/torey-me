@@ -50,3 +50,13 @@ p{margin:0 0 16px}
 @media (prefers-reduced-motion:reduce){.door{transition:none}html{scroll-behavior:auto}}
 .tipjar{display:flex;flex-direction:column;align-items:center;text-align:center}
 html{scroll-padding-top:70px}
+
+/* avatar */
+.avatar{border-radius:50%;object-fit:cover;filter:grayscale(1);display:block;flex:none}
+.brand{display:inline-flex;align-items:center;gap:10px}
+.brand .avatar{width:32px;height:32px}
+.intro h1.name{display:flex;align-items:center;gap:16px}
+.intro h1.name .avatar{width:72px;height:72px}
+@media (max-width:600px){.intro h1.name .avatar{width:56px;height:56px}.intro h1.name{gap:12px}}
+.avatar{border-radius:22%}
+.brand .avatar{border-radius:8px}
