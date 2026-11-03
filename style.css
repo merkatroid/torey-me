@@ -30,7 +30,7 @@ p{margin:0 0 16px}
 .role .when{color:var(--muted);font-size:15px}
 .role p{margin:4px 0 0;color:var(--muted)}
 .foot{padding-top:64px;padding-bottom:48px;color:var(--muted);font-size:14px}
-@media (max-width:600px){h1{font-size:2rem}.hero{padding-top:56px}.role{grid-template-columns:1fr;gap:2px}.nav-inner{flex-direction:column;align-items:flex-start;gap:6px}nav{justify-content:flex-start;gap:14px}}
+@media (max-width:600px){.lines{opacity:.08}h1{font-size:2rem}.hero{padding-top:56px}.role{grid-template-columns:1fr;gap:2px}.nav-inner{flex-direction:column;align-items:flex-start;gap:6px}nav{justify-content:flex-start;gap:14px}}
 .lines{position:fixed;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none;color:var(--muted);opacity:.2}
 @media (prefers-color-scheme:dark){.lines{opacity:.16}}
 .nav{background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(6px)}
@@ -48,7 +48,6 @@ p{margin:0 0 16px}
 .quote{color:var(--muted);font-style:italic;margin:0 0 28px}
 @media (max-width:600px){.doors{grid-template-columns:1fr}.intro h1{font-size:2.3rem}.page-head{padding-top:40px}}
 @media (prefers-reduced-motion:reduce){.door{transition:none}html{scroll-behavior:auto}}
-.tipjar{display:flex;flex-direction:column;align-items:center;text-align:center}
 html{scroll-padding-top:70px}
 
 /* avatar */
@@ -60,3 +59,5 @@ html{scroll-padding-top:70px}
 @media (max-width:600px){.intro h1.name .avatar{width:56px;height:56px}.intro h1.name{gap:12px}}
 .avatar{border-radius:22%}
 .brand .avatar{border-radius:8px}
+.hero-title{font-size:2rem;line-height:1.3;font-weight:600;margin-bottom:28px}
+@media (max-width:600px){.hero-title{font-size:1.45rem}}
